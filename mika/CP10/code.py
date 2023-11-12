@@ -83,6 +83,7 @@ def win_game():
 
 def get_parts():
     received_data = uart.readline()
+    received_data = received_data.rstrip(b'\x00')
     if received_data:
         decoded_data = received_data.decode("utf-8").strip()
         return decoded_data.split(",")
