@@ -10,10 +10,8 @@ kbd = Keyboard(usb_hid.devices)
 uart = busio.UART(board.TX, board.RX, baudrate=115200)
 delimiter = ","
 
-def send_message(char, msg=None):
+def send_message(data):
     global delimiter
-    msg = str(msg) if msg is not None else ""
-    data = f"{char}{delimiter}{msg}"
     uart.write(data.encode("utf-8"))
     print("Sending:", data)
     time.sleep(0.2)
